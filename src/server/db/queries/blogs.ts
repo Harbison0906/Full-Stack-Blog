@@ -2,8 +2,8 @@ import { Query } from '../';
 
 const all = () => Query('SELECT * FROM Blogs');
 const one = (id: number) => Query('SELECT * FROM Blogs WHERE id = ?', [id]);
-const insert = (title: string, authorid: number, content: string) => Query('INSERT INTO Blogs (title, authorid, content) Values(?, ?, ?)', [title, authorid, content]);
-const update = (id: number, title: string, authorid: number, content: string) => Query('UPDATE Blogs SET title: ?, authorid: ?, content: ?  WHERE id = ?', [title, authorid, content, id])
+const insert = (title: string, content: string) => Query('INSERT INTO Blogs (title, content) Values(?, ?)', [title, content]);
+const update = (id: number, title: string, content: string) => Query('UPDATE Blogs SET title: ?, content: ?  WHERE id = ?', [title, content, id])
 const destroy = (id: number) => Query('DELETE FROM Blogs WHERE id = ?', [id]);
 
 

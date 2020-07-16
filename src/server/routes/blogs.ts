@@ -22,7 +22,7 @@ router.get('/:id?', async (req, res, next) => {
 router.post('/', async (req, res) => {
   const blog = req.body;
   try {
-  const insert = await db.blogs.insert(blog.title, blog.authorid, blog.content);
+  const insert = await db.blogs.insert(blog.title, blog.content);
   res.json(blog);
   } catch (error) {
     console.log(error);
@@ -34,7 +34,7 @@ router.put('/:id', async (req, res) => {
   const id = Number(req.params.id);
   const blog = req.body;
   try {
-    const update = await db.blogs.update(id, blog.title, blog.authorid, blog.content);
+    const update = await db.blogs.update(id, blog.title, blog.content);
     res.json('Blog updated!');
   } catch (error) {
     console.log(error);
