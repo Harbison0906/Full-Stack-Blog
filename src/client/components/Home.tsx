@@ -29,7 +29,8 @@ export default class Home extends Component<IHomeProps, IHomeState> {
                   <div className="card shadow-sm">
                     <div className="card-body">
                       <h5 className="card-title">{blog.title}</h5>
-                      <h6 className="card-title">{blog.title}</h6>
+                      <h6 className="card-author">By Seth Harbison</h6>
+                      <p className="card-date">{blog._created}</p>                      
                       <p className="card-text">{blog.content}</p>
                       <Link className="link" to={`/edit/${blog.id}`} >
                         <button
