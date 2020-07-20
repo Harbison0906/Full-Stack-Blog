@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
 import Home from './components/Home';
 import Admin from './components/Admin';
 import Edit from './components/Edit';
+import BlogPost from './components/BlogPost';
 
 export default class App extends React.Component {
 
@@ -26,7 +27,8 @@ export default class App extends React.Component {
 						<Route exact path="/" component={Home} />
 						<Route exact path="/admin" component={Admin} />
 						<Route exact path="/edit/:id" component={Edit}/>
-						<Redirect from="*" to="/" />
+						<Route exact path="/blogpost/:id" component={BlogPost} />
+						<Redirect from="*" to="/"/>
 					</Switch>
 				</BrowserRouter>
 

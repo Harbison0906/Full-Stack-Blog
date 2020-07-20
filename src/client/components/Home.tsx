@@ -28,14 +28,14 @@ export default class Home extends Component<IHomeProps, IHomeState> {
                 <div key={blog.id} className="col-md-7">
                   <div className="card shadow-sm">
                     <div className="card-body">
-                      <h5 className="card-title">{blog.title}</h5>
+                      <Link to={`/blogpost/${blog.id}`} className="card-title"><h5>{blog.title}</h5></Link>
                       <h6 className="card-author">By Seth Harbison</h6>
-                      <p className="card-date">{blog._created}</p>                      
-                      <p className="card-text">{blog.content}</p>
+                      <p className="card-date">{blog._created}</p>
+                      <p className="card-text">{blog.content.substring(0, 75)} ...</p>
                       <Link className="link" to={`/edit/${blog.id}`} >
                         <button
                           id="editButton"
-                          className="btn" 
+                          className="btn"
                         >Edit</button>
                       </Link>
 
@@ -52,7 +52,7 @@ export default class Home extends Component<IHomeProps, IHomeState> {
 
 }
 
-export interface IHomeProps extends RouteComponentProps <{ id: string }>{ }
+export interface IHomeProps extends RouteComponentProps<{ id: string }> { }
 
 export interface IHomeState {
   blogs: IBlog[]
