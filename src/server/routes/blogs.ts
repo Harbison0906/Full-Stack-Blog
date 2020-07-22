@@ -7,7 +7,7 @@ router.get('/:id?', async (req, res, next) => {
     const id = Number(req.params.id)
     try {
       if (id) {
-        const blog = await db.blogs.one(id);
+        const [blog] = await db.blogs.one(id);
         res.json(blog);
       } else {
         const blogs = await db.blogs.all();

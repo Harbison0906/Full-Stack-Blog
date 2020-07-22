@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Admin from './components/Admin';
 import Edit from './components/Edit';
 import BlogPost from './components/BlogPost';
+import Tags from './components/Tags';
 
 export default class App extends React.Component {
 

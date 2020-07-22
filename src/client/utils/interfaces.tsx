@@ -4,3 +4,8 @@ export interface IBlog {
   content: string;
   _created: number;
 }
+
+export interface ITags {
+  id: string;
+  name: string;
+}
