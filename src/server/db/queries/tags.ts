@@ -1,5 +1,5 @@
 import { Query } from '../';
 
-const tags = () => Query('spBlogTags(?)', []);
+const tags = (blogid: number) => Query('spBlogTags(?)', [blogid]);
 
 export default { tags }

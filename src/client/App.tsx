@@ -10,10 +10,10 @@ export default class App extends React.Component {
 
 	render() {
 		return (
-			<main className="container my-5">
+			<main className="container" id="background">
 				<BrowserRouter>
-					<section className="header">
-						<div className="jumbotron-primary jumbotron-fluid header">
+					<section className="header" id="header">
+						<div className="jumbotron jumbotron-fluid">
 							<div className="container text-center">
 
 								<h1 className="display-4 align-middle">Attack of the Blog</h1>

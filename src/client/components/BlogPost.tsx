@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { IBlog } from '../utils/interfaces';
 import { ITags } from '../utils/interfaces';
+import blogs from '../../server/db/queries/blogs';
 
 export default class BlogPost extends Component<IBlogPostProps, IBlogPostState> {
 
@@ -19,19 +20,17 @@ export default class BlogPost extends Component<IBlogPostProps, IBlogPostState> 
   }
 
   componentDidMount() {
-    fetch(`/api/blogs/${this.props.match.params.id}`)
+    let blogDetails: any = null,
+      id = this.props.match.params.id,
+      tagFetch = fetch(`/api/tags/${id}`).then(res => res.json());
+
+    fetch(`/api/blogs/${id}`)
       .then(res => res.json())
-      .then((blog: IBlog) => this.setState(prevState => {
-        const blogs = Object.assign({}, prevState.blogs);
-        blogs.title = blog.title;
-        blogs._created = blog._created;
-        blogs.content = blog.content;
-        return { blogs }
-      }))
-      .then()
-    fetch(`/api/tags/${this.props.match.params.id}`)
-      .then(res => res.json())
-      .then(blogs => this.setState({ blogs }));
+      .then((blog: IBlog) => {
+        blogDetails = blogs;
+        return tagFetch;
+      })
+      .then(blogtags => this.setState({ tags: blogtags, blogs: blogDetails }))
   }
 
   render() {
@@ -62,16 +61,8 @@ interface IBlogPostState {
   }
 }
 
-// fetch(`/api/blogs/${this.props.match.params.id}`)
-//       .then(res => res.json())
-//       .then((blog: IBlog) => this.setState(prevState => {
-//         const blogs = Object.assign({}, prevState.blogs);
-//         blogs.title = blog.title;
-//         blogs._created = blog._created;
-//         blogs.content = blog.content;
-//         return { blogs }
-//       }));
-
-//     fetch(`/api/tags/${this.props.match.params.id}`)
-//       .then(res => res.json())
-//       .then(blogs => this.setState({ blogs }));
+// this.setState(prevState => {
+//   const blogs = Object.assign({}, prevState.blogs);
+//   blogs.title = blog.title;
+//   blogs._created = blog._created;
+//   blogs.content = blog.content;

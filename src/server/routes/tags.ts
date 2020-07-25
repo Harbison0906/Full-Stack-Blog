@@ -3,18 +3,15 @@ import db from '../db';
 
 const router = express.Router();
 
-router.get('/:id?', async (req, res, next) => {
-  const blogid = Number(req.params.id)
+router.get('/:blogid?', async (req, res, next) => {
+  const blogid = Number(req.params.blogid)
   try {
-    if (blogid) {
-      const [blog] = await db.blogs.one(blogid);
-      res.json(blog);
-    } else {
-      const blogs = await db.blogs.all();
-      res.json(blogs);
-    }
+      const [tag] = await db.tags.tags(blogid);
+      res.json(tag);
   } catch (error) {
     console.log(error)
     res.status(500).json('Oops, something went wrong...')
   }
 });
+
+export default router
