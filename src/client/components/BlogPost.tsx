@@ -27,8 +27,8 @@ export default class BlogPost extends Component<IBlogPostProps, IBlogPostState> 
         blogs._created = blog._created;
         blogs.content = blog.content;
         return { blogs }
-      }));
-
+      }))
+      .then()
     fetch(`/api/tags/${this.props.match.params.id}`)
       .then(res => res.json())
       .then(blogs => this.setState({ blogs }));
