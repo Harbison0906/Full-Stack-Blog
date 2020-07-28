@@ -1,5 +1,6 @@
 import { Query } from '../';
 
-const tags = (blogid: number) => Query('spBlogTags(?)', [blogid]);
+const all = () => Query('SELECT * FROM Tags');
+const insert = (newTag: any) => Query('INSERT INTO Tags SET ?', newTag);
 
-export default { tags }
+export default { all, insert }

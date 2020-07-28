@@ -3,11 +3,21 @@ import db from '../db';
 
 const router = express.Router();
 
-router.get('/:blogid?', async (req, res, next) => {
-  const blogid = Number(req.params.blogid)
+router.get('/', async (req, res, next) => {
   try {
-      const [tag] = await db.tags.tags(blogid);
-      res.json(tag);
+      const tags = await db.tags.all();
+      res.json(tags);
+  } catch (error) {
+    console.log(error)
+    res.status(500).json('Oops, something went wrong...')
+  }
+});
+
+router.post('/create', async (req, res, next) => {
+  const tagDTO = req.body;
+  try {
+      const { insertId } = await db.tags.insert(tagDTO);
+      res.json({msg: 'tag created', id: insertId });
   } catch (error) {
     console.log(error)
     res.status(500).json('Oops, something went wrong...')
