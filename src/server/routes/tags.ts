@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post('/create', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   const tagDTO = req.body;
   try {
       const { insertId } = await db.tags.insert(tagDTO);
